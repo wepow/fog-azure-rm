@@ -77,7 +77,8 @@ module Fog
         def initialize(_options = {})
           begin
             require 'azure_mgmt_storage'
-            require 'azure/storage'
+            require 'azure/storage/common'
+            require 'azure/storage/blob'
           rescue LoadError => e
             retry if require('rubygems')
             raise e.message
@@ -90,7 +91,8 @@ module Fog
         def initialize(options)
           begin
             require 'azure_mgmt_storage'
-            require 'azure/storage'
+            require 'azure/storage/common'
+            require 'azure/storage/blob'
             require 'securerandom'
             require 'vhd'
             @debug = ENV['DEBUG'] || options[:debug]
