@@ -76,14 +76,14 @@ module Fog
   # Main AzureRM fog Provider Module
   module AzureRM
     extend Fog::Provider
-    service(:resources, 'Resources')
-    service(:dns, 'DNS')
-    service(:storage, 'Storage')
-    service(:network, 'Network')
-    service(:compute, 'Compute')
-    service(:application_gateway, 'ApplicationGateway')
-    service(:traffic_manager, 'TrafficManager')
-    service(:sql, 'Sql')
-    service(:key_vault, 'KeyVault')
+    service(:resources, 'azurerm/resources', 'Resources')
+    service(:dns, 'azurerm/dns', 'DNS')
+    service(:storage, 'azurerm/storage', 'Storage')
+    service(:network, 'azurerm/network', 'Network')
+    service(:compute, 'azurerm/compute', 'Compute')
+    service(:application_gateway, 'azurerm/application_gateway', 'ApplicationGateway')
+    service(:traffic_manager, 'azurerm/traffic_manager', 'TrafficManager')
+    service(:sql, 'azurerm/sql', 'Sql')
+    service(:key_vault, 'azurerm/key_vault', 'KeyVault')
   end
 end

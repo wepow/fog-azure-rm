@@ -20,8 +20,6 @@ module Fog
               msg = "Listing blobs in container: #{container_name}, options: #{options}"
               Fog::Logger.debug msg
               temp = @blob_client.list_blobs(container_name, options)
-              # Workaround for the issue https://github.com/Azure/azure-storage-ruby/issues/37
-              raise temp unless temp.instance_of?(Azure::Storage::Common::Service::EnumerationResults)
 
               blobs += temp unless temp.empty?
               break if temp.continuation_token.nil? || temp.continuation_token.empty?
