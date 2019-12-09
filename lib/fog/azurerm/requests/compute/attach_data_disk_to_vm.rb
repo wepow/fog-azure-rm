@@ -137,8 +137,7 @@ module Fog
         end
 
         def check_blob_exist(storage_account_name, blob_name, access_key)
-          client = Azure::Storage::Client.new(storage_account_name: storage_account_name, storage_access_key: access_key)
-          blob_service = Azure::Storage::Blob::BlobService.new(client: client)
+          blob_service = Azure::Storage::Blob::BlobService.new(storage_account_name: storage_account_name, storage_access_key: access_key)
           begin
             blob_prop = blob_service.get_blob_properties('vhds', blob_name)
             true unless blob_prop.nil?
