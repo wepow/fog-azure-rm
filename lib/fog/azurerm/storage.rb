@@ -128,7 +128,7 @@ module Fog
             create(storage_account_name: @azure_storage_account_name,
                   storage_access_key:    @azure_storage_access_key)
 
-          @blob_client.with_filter(Azure::Storage::Core::Filter::ExponentialRetryPolicyFilter.new)
+          @blob_client.with_filter(Azure::Storage::Common::Core::Filter::ExponentialRetryPolicyFilter.new)
           @blob_client.with_filter(Azure::Core::Http::DebugFilter.new) if @debug
           @signature_client = Azure::Storage::Common::Core::Auth::SharedAccessSignature.new(@azure_storage_account_name,
                                                                                             @azure_storage_access_key)
