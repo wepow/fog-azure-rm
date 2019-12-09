@@ -124,14 +124,14 @@ module Fog
           @azure_storage_account_name = options[:azure_storage_account_name]
           @azure_storage_access_key = options[:azure_storage_access_key]
 
-          azure_client = Azure::Storage::Client.create(storage_account_name: @azure_storage_account_name,
-                                                       storage_access_key: @azure_storage_access_key)
-          azure_client.storage_blob_host = get_blob_endpoint(@azure_storage_account_name, true, @environment)
-          @blob_client = azure_client.blob_client
+          @blob_client = Azure::Storage::Blob::BlobService.
+            create(storage_account_name: @azure_storage_account_name,
+                  storage_access_key:    @azure_storage_access_key)
+
           @blob_client.with_filter(Azure::Storage::Core::Filter::ExponentialRetryPolicyFilter.new)
           @blob_client.with_filter(Azure::Core::Http::DebugFilter.new) if @debug
-          @signature_client = Azure::Storage::Core::Auth::SharedAccessSignature.new(@azure_storage_account_name,
-                                                                                    @azure_storage_access_key)
+          @signature_client = Azure::Storage::Common::Core::Auth::SharedAccessSignature.new(@azure_storage_account_name,
+                                                                                            @azure_storage_access_key)
         end
       end
     end
